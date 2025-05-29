@@ -5,15 +5,13 @@ FASTAPI_URL = "http://localhost:8000/analyze"
 ELASTIC_URL = "http://localhost:9200/sentiment-logs/_doc"
 
 def analyze_and_send(text):
-    # 1. Appel à l'API FastAPI
+    
     response = requests.post(FASTAPI_URL, json={"text": text})
     result = response.json()
 
-    # 2. Ajouter un timestamp @timestamp en UTC ISO format
-    result["@timestamp"] = datetime.datetime.utcnow().isoformat() + "Z"
+     result["@timestamp"] = datetime.datetime.utcnow().isoformat() + "Z"
 
-    # 3. Envoi à Elasticsearch avec authentification (modifie le mdp)
-    es_response = requests.post(
+      es_response = requests.post(
         ELASTIC_URL,
         json=result,
         auth=('elastic', 'elastic')
