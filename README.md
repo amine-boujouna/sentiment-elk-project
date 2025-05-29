@@ -38,6 +38,7 @@ sudo dpkg -i elasticsearch-8.13.4-amd64.deb
 
 network.host: 0.0.0.0
 xpack.security.enabled: true
+xpack.security.authc.api_key.enabled: true
 
 sudo systemctl start elasticsearch
 sudo systemctl enable elasticsearch
